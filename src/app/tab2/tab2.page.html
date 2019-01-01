@@ -6,4 +6,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-grid>
+    <ion-row *ngFor="let i of t; let i = index; let first = first" justify-content-center style="max-width: 274px;">
+      <div *ngFor="let j of i"
+        [ngClass]="{
+          'row': !first
+        }">{{$odd}}
+          <img src="assets/images/map/castle.png" />
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- 
+<div style="margin-top: 0px; margin-left: 0px;">
+    <img *ngFor="let i of m" src="assets/images/map/castle.png" />
+  </div>
+  <div style=" overflow: hidden;">
+    <img *ngFor="let i of m" src="assets/images/map/castle.png" />
+  </div>
+  <div style="margin-top: -14px; margin-left: 0px;">
+    <img *ngFor="let i of m" src="assets/images/map/castle.png" />
+  </div>
+  -->

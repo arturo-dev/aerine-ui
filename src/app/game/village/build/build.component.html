@@ -1,0 +1,23 @@
+<ion-list>
+  <ion-list-header>
+    <ion-label>{{'Build.Title'}}</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let build of builds">
+    <img class="img-build" src="assets/images/build/medieval_largeCastle.png">
+    <ion-label class="text-build" text-wrap>
+      <ion-text>
+        <h3>{{build.name}}</h3>
+      </ion-text>
+      <p>{{'Build.Level'}} {{build.level}}</p>
+      <ion-text>
+        <p>........... /h</p>
+      </ion-text>
+    </ion-label>
+    <ion-fab-button size="small">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button size="small">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-item>
+</ion-list>

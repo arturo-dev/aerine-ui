@@ -1,0 +1,16 @@
+<section>
+
+    <ion-item>
+      <ion-label>{{'Village.Select.Title'}}</ion-label>
+      <ion-select [(ngModel)]="village"
+        (ionChange)="queryBuilds(village)">
+        <ion-select-option 
+          *ngFor="let village of villages"
+          [value]="village">
+          {{village.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  <village-build *ngIf="village" [idVillage]="village.id"></village-build>
+</section>

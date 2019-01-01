@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    protocol: 'http://',
+    domain: 'localhost:8080',
+    context: '/aerine-api',
+    auth: {
+      clientId: 'clientId',
+      clientSecret: 'clientSecret',
+      grant: 'password'
+    }
+  }
 };
 
 /*

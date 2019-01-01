@@ -1,5 +1,7 @@
 {
-  "name": "idle-battle",
-  "integrations": {},
+  "name": "aerine",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
