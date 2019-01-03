@@ -13,6 +13,24 @@ export const environment = {
       clientSecret: 'clientSecret',
       grant: 'password'
     }
+  },
+  log: {
+    full: {
+      http: false,
+      handler: true
+    }
+  },
+  google: {
+    clientId: {
+      web: '862749637734-i55p7r6mnqmmsnjau01jjm64r9dkqdme.apps.googleusercontent.com',
+      android: '862749637734-ii1n74i15m2fhn9cuc33up7b74t0nft3.apps.googleusercontent.com'
+    }
+  },
+  default: {
+    user: {
+      username: 'arturo',
+      password: '123456'
+    }
   }
 };
 

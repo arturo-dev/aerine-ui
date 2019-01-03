@@ -5,6 +5,9 @@ import { environment } from 'src/environments/environment';
 import { LoggerService } from '../logger/logger.service';
 import { Subscription, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Platform } from '@ionic/angular';
+import { ApiUri } from '../api/api-uri';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +20,9 @@ export class AuthService {
   constructor(
     private logger: LoggerService,
     private api: ApiService,
-    private injector: Injector
+    private injector: Injector,
+    private googlePlus: GooglePlus,
+    private platform: Platform
   ) { }
 
   get token() {
@@ -48,5 +53,18 @@ export class AuthService {
         this.token = auth.access_token;
         return auth;
       });
+  }
+
+  authenticateByGoogle(): Promise<any> {
+    // TODO
+    return this.googlePlus.login({
+      webClientId: environment.google.clientId.web,
+      offline: true
+    }).then(user => {
+      return user;
+    }, error => {
+      console.log('Auth');
+      console.log(error);
+    });
   }
 }

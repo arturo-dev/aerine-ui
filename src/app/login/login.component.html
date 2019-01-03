@@ -1,0 +1,27 @@
+<ion-content padding-top>
+  <form padding-top [formGroup]="formLogin">
+    <ion-item padding-start padding-end>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="username"></ion-input>
+    </ion-item>
+
+    <ion-item padding-start padding-end>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <ion-button expand="full" (click)="login()">Login</ion-button>
+    </div>
+
+    <ion-grid>
+      <ion-row justify-content-center>
+        <app-google-button></app-google-button>
+      </ion-row>
+    </ion-grid>
+
+    <div>
+        {{formLogin.controls.errors | json}}
+      </div>
+  </form>
+</ion-content>

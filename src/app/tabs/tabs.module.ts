@@ -6,15 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
-import { UserModule } from '../game/user/user.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule,
-    UserModule
+    TabsPageRoutingModule
   ],
   declarations: [TabsPage]
 })
