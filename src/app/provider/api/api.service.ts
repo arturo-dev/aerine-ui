@@ -24,7 +24,7 @@ export class ApiService {
       withCredentials?: boolean; 
     }
       ): Observable<T> {
-    return this.http.get<T>(`${ApiService.URI}${path}`, options);
+    return this.http.get<T>(`${path.indexOf('http') > -1 ? '' : ApiService.URI}${path}`, options);
   }
 
   post<T>(path: string, body?: any, options?: 

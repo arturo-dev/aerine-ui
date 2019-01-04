@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/provider/api/api.service';
-import { Village } from './village.model';
+import { Village, VillageList } from './village.model';
 import { LoggerService } from 'src/app/provider/logger/logger.service';
 import { Build } from './build/build.model';
+import { ApiResource } from 'src/app/provider/api/api-resource.model';
+import { Player } from '../player/player.model';
+import { ApiList } from 'src/app/provider/api/api-list.model';
 
 @Component({
   selector: 'app-village',
@@ -11,13 +14,13 @@ import { Build } from './build/build.model';
 })
 export class VillageComponent implements OnInit {
 
-  @Input() idPlayer: number;
-  @Output() onSelect = new EventEmitter<Village>();
+  @Input() player: Player;
 
   static ENDPOINT_VILLAGE = '/villages';
 
   villages: Village[];
   village: Village;
+  resourceCurrentVillage: string;
 
   constructor(
     private api: ApiService,
@@ -25,24 +28,30 @@ export class VillageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.queryVillage(this.idPlayer);
+    this.queryVillages(this.player._links.villages);
   }
 
-  private queryVillage(idPlayer: number): void {
-    const params: any = {
-      player: idPlayer
-    };
-
-    this.logger.info(`Query villages of player ${idPlayer}`);
-    this.api.get<Village[]>(VillageComponent.ENDPOINT_VILLAGE, {params: params}).subscribe(villages => {
+  private queryVillages(resource: ApiResource): void {
+    this.logger.info(`Query villages`);
+    this.api.get<ApiList<VillageList>>(resource.href).subscribe(villages => {
       this.logger.info(`Received villages:`, villages);
       
-      this.villages = villages;
+      this.villages = villages._embedded.villages;
       this.village = this.villages[0];
+      this.resourceCurrentVillage = this.villages[0]._links.self.href;
       
       this.logger.info(`Selecting village:`, this.village);
-      this.onSelect.emit(this.village);
     });
+  }
+
+  setVillage(resource: string): void {
+    for (let village of this.villages) {
+      if (village._links.self.href === resource) {
+        this.village = village;
+        this.logger.info(`Selecting village:`, this.village);
+        break;
+      }
+    }
   }
 
 }

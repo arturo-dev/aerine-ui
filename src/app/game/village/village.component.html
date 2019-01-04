@@ -1,16 +1,50 @@
 <section>
 
-    <ion-item>
-      <ion-label>{{'Village.Select.Title'}}</ion-label>
-      <ion-select [(ngModel)]="village"
-        (ionChange)="queryBuilds(village)">
-        <ion-select-option 
-          *ngFor="let village of villages"
-          [value]="village">
-          {{village.name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+  <ion-item>
+    <ion-label>{{'Village.Select.Title' | translate}}</ion-label>
+    <ion-select [(ngModel)]="resourceCurrentVillage"
+      (ionChange)="setVillage(resourceCurrentVillage)">
+      <ion-select-option 
+        *ngFor="let village of villages"
+        [value]="village._links.self.href">
+        {{village.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-  <village-build *ngIf="village" [idVillage]="village.id"></village-build>
+  <ion-grid>
+    <ion-row justify-content-between>
+      <ion-col>
+        <div>
+          <ion-row>
+              <ion-col>{{village?.resources.gold.amount + 100000000 | numberFormater}}</ion-col> 
+              <ion-col><img class="ic-resource" src="assets/images/village/ic-gold.png" /></ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-row>
+              <ion-col>{{village?.resources.iron.amount}}</ion-col> 
+              <ion-col><img class="ic-resource" src="assets/images/village/ic-iron.png" /></ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-row>
+              <ion-col>{{village?.resources.food.amount}}</ion-col> 
+              <ion-col><img class="ic-resource" src="assets/images/village/ic-food.png" /></ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item *ngIf="village">
+    <ion-label position="floating">{{'Village.Label.Name' | translate}}</ion-label>
+    <ion-input [(ngModel)]="village.name"></ion-input>
+  </ion-item>
+
+  <village-build *ngIf="village" [village]="village"></village-build>
 </section>

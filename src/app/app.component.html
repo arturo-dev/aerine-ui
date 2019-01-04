@@ -1,3 +1,9 @@
 <ion-app>
+  <ion-progress-bar 
+    class="bar-loading" 
+    [hidden]="!isLoading" 
+    type="indeterminate">
+  </ion-progress-bar>
+  
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

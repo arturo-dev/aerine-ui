@@ -1,0 +1,24 @@
+{
+    "Tabs": {
+        "Home": "Inicio",
+        "Map": "Mapa",
+        "Settings": "Configuracion"
+    },
+
+    "Village": {
+        "Label": {
+            "Name": "Nombre"
+        },
+        
+        "Select": {
+            "Title": "Pueblo"
+        }
+    },
+
+    "Build": {
+        "Label": {
+            "Title": "Construcciones",
+            "Level": "Nivel"
+        }
+    }
+}

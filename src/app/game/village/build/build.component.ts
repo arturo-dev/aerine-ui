@@ -3,6 +3,7 @@ import { LoggerService } from 'src/app/provider/logger/logger.service';
 import { ApiService } from 'src/app/provider/api/api.service';
 import { VillageComponent } from '../village.component';
 import { Build } from './build.model';
+import { Village } from '../village.model';
 
 @Component({
   selector: 'village-build',
@@ -11,7 +12,7 @@ import { Build } from './build.model';
 })
 export class BuildComponent implements OnInit {
 
-  @Input() idVillage: number;
+  @Input() village: Village;
 
   builds: Build[];
 
@@ -21,7 +22,10 @@ export class BuildComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.queryBuilds(this.idVillage);
+    this.builds = this.village.builds;
+    this.builds.forEach(build => {
+      
+    });
   }
 
   private queryBuilds(idVillage: number): void {

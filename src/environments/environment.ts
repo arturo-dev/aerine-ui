@@ -18,7 +18,8 @@ export const environment = {
     full: {
       http: false,
       handler: true
-    }
+    },
+    debug: false
   },
   google: {
     clientId: {

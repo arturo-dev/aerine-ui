@@ -1,15 +1,15 @@
-import { ItemType } from '../item/item-type.enum';
-import { Hero } from '../hero/hero.model';
-import { Item } from '../item/item.model';
-import { Village } from '../village/village.model';
+import { ApiLinks } from 'src/app/provider/api/api-links.model';
+import { ApiResource } from 'src/app/provider/api/api-resource.model';
 
-export class Player {
-    currency: number;
-    heros: Hero<ItemType>[];
-    villages: Village[];
-    bag: Item<ItemType>[];
+export class Player extends ApiLinks<PlayerResources> {
+    name: string;
+}
 
-    loadPlayer(): void {
-
-    }
+export class PlayerResources {
+    guild: ApiResource;
+    self: ApiResource;
+    player: ApiResource;
+    server: ApiResource;
+    user: ApiResource;
+    villages: ApiResource;
 }

@@ -15,6 +15,8 @@ export class PlayerComponent implements OnInit {
 
   private FIND_BY_USER_AND_SERVER = '/findOneByUserAndServer';
 
+  player: Player;
+
   constructor(
     private logger: LoggerService,
     private api: ApiService,
@@ -39,6 +41,7 @@ export class PlayerComponent implements OnInit {
   
       this.api.get<Player>(`${ApiUri.PLAYER}${ApiUri.SEARCH}${this.FIND_BY_USER_AND_SERVER}`, {params: params}).subscribe(player => {
         this.logger.info('Recivied player', player);
+        this.player = player;
       });
     });
   }
